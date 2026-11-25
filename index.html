@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Árvore da Minha Família</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#f7f2e9;color:#333;text-align:center}
+  header{padding:50px 20px;background:#2e5339;color:#fff}
+  header h1{font-size:38px}
+  header p{margin-top:10px;opacity:.9}
+
+  .arvore{padding:40px 10px;overflow-x:auto}
+  .nivel{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:30px 0;position:relative}
+  .nivel::before{content:"";position:absolute;top:-30px;left:50%;width:2px;height:30px;background:#2e5339}
+
+  .pessoa{background:#fff;width:160px;padding:15px;border-radius:16px;box-shadow:0 5px 15px rgba(0,0,0,.1);cursor:pointer;border:3px solid #e8dcc3}
+  .pessoa:hover{transform:scale(1.05);transition:.3s;border-color:#2e5339}
+  .pessoa img{width:110px;height:110px;object-fit:cover;border-radius:50%;border:3px solid #2e5339}
+  .pessoa h3{margin-top:10px;font-size:17px}
+  .pessoa p{font-size:13px;color:#888}
+  .vo{border-color:#c9a227}
+  .eu{border-color:#2e5339;background:#eaf5ec}
+
+  .seta{font-size:30px;color:#c9a227}
+
+  /* JANELA QUE ABRE A PESSOA */
+  #modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:99;padding:20px}
+  .card{background:#fff;max-width:380px;width:100%;padding:25px;border-radius:20px}
+  .card img{width:180px;height:180px;object-fit:cover;border-radius:50%}
+  .card h2{margin:15px 0 5px}
+  .card p{color:#666;line-height:1.5}
+  .card button{margin-top:20px;padding:12px 20px;background:#2e5339;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer;width:100%}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌳 Árvore da Minha Família</h1>
+  <p>Nossa história, nossas raízes, nossas fotos</p>
+</header>
+
+<div class="arvore">
+
+  <p><b>AVÓS</b></p>
+  <div class="nivel">
+    <div class="pessoa vo" onclick="abrir('Vô João','Avô','Meu avô, o começo de tudo.','https://picsum.photos/300/300?random=1')">
+      <img src="https://picsum.photos/300/300?random=1"><h3>Vô João</h3><p>Avô</p>
+    </div>
+    <div class="pessoa vo" onclick="abrir('Vó Maria','Avó','Minha avó, coração da família.','https://picsum.photos/300/300?random=2')">
+      <img src="https://picsum.photos/300/300?random=2"><h3>Vó Maria</h3><p>Avó</p>
+    </div>
+  </div>
+
+  <div class="seta">↓</div>
+  <p><b>PAIS</b></p>
+  <div class="nivel">
+    <div class="pessoa" onclick="abrir('Pai','Pai','Meu pai, meu exemplo.','https://picsum.photos/300/300?random=3')">
+      <img src="https://picsum.photos/300/300?random=3"><h3>Pai</h3><p>Pai</p>
+    </div>
+    <div class="pessoa" onclick="abrir('Mãe','Mãe','Minha mãe, minha base.','https://picsum.photos/300/300?random=4')">
+      <img src="https://picsum.photos/300/300?random=4"><h3>Mãe</h3><p>Mãe</p>
+    </div>
+  </div>
+
+  <div class="seta">↓</div>
+  <p><b>FILHOS / IRMÃOS</b></p>
+  <div class="nivel">
+    <div class="pessoa eu" onclick="abrir('Eu','Eu','Esse sou eu, contando nossa história.','https://picsum.photos/300/300?random=5')">
+      <img src="https://picsum.photos/300/300?random=5"><h3>Eu</h3><p>Eu</p>
+    </div>
+    <div class="pessoa" onclick="abrir('Meu Irmão','Irmão','Meu irmão, meu parceiro.','https://picsum.photos/300/300?random=6')">
+      <img src="https://picsum.photos/300/300?random=6"><h3>Meu Irmão</h3><p>Irmão</p>
+    </div>
+    <div class="pessoa" onclick="abrir('Minha Irmã','Irmã','Minha irmã querida.','https://picsum.photos/300/300?random=7')">
+      <img src="https://picsum.photos/300/300?random=7"><h3>Minha Irmã</h3><p>Irmã</p>
+    </div>
+  </div>
+
+</div>
+
+<div id="modal" onclick="fechar()">
+  <div class="card" onclick="event.stopPropagation()">
+    <img id="fotoPessoa" src="">
+    <h2 id="nomePessoa"></h2>
+    <p id="cargoPessoa" style="color:#2e5339;font-weight:bold"></p>
+    <p id="historiaPessoa" style="margin-top:10px"></p>
+    <button onclick="fechar()">Fechar</button>
+  </div>
+</div>
+
+<script>
+  function abrir(nome, cargo, historia, foto){
+    document.getElementById('nomePessoa').innerText = nome;
+    document.getElementById('cargoPessoa').innerText = cargo;
+    document.getElementById('historiaPessoa').innerText = historia;
+    document.getElementById('fotoPessoa').src = foto;
+    document.getElementById('modal').style.display = 'flex';
+  }
+  function fechar(){
+    document.getElementById('modal').style.display = 'none';
+  }
+</script>
+
+</body>
+</htm
