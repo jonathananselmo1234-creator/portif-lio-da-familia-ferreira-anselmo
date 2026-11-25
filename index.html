@@ -1,107 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Árvore da Minha Família</title>
+<title>Árvore da Família Ferreira Anselmo</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-  body{background:#f7f2e9;color:#333;text-align:center}
-  header{padding:50px 20px;background:#2e5339;color:#fff}
-  header h1{font-size:38px}
-  header p{margin-top:10px;opacity:.9}
-
-  .arvore{padding:40px 10px;overflow-x:auto}
-  .nivel{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:30px 0;position:relative}
-  .nivel::before{content:"";position:absolute;top:-30px;left:50%;width:2px;height:30px;background:#2e5339}
-
-  .pessoa{background:#fff;width:160px;padding:15px;border-radius:16px;box-shadow:0 5px 15px rgba(0,0,0,.1);cursor:pointer;border:3px solid #e8dcc3}
-  .pessoa:hover{transform:scale(1.05);transition:.3s;border-color:#2e5339}
-  .pessoa img{width:110px;height:110px;object-fit:cover;border-radius:50%;border:3px solid #2e5339}
-  .pessoa h3{margin-top:10px;font-size:17px}
-  .pessoa p{font-size:13px;color:#888}
-  .vo{border-color:#c9a227}
-  .eu{border-color:#2e5339;background:#eaf5ec}
-
-  .seta{font-size:30px;color:#c9a227}
-
-  /* JANELA QUE ABRE A PESSOA */
-  #modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:99;padding:20px}
-  .card{background:#fff;max-width:380px;width:100%;padding:25px;border-radius:20px}
-  .card img{width:180px;height:180px;object-fit:cover;border-radius:50%}
-  .card h2{margin:15px 0 5px}
-  .card p{color:#666;line-height:1.5}
-  .card button{margin-top:20px;padding:12px 20px;background:#2e5339;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer;width:100%}
+  body{background:#fdf6ec;color:#333;padding:20px}
+  header{text-align:center;padding:40px 20px;background:#2d6a4f;color:white;border-radius:20px;margin-bottom:30px}
+  header h1{font-size:32px;margin-bottom:10px}
+  header p{font-size:16px;opacity:.9}
+  .generation{max-width:1150px;margin:0 auto 40px;background:white;padding:25px;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,.08)}
+  .generation h2{text-align:center;color:#2d6a4f;margin-bottom:5px;font-size:24px}
+  .generation .subtitle{text-align:center;color:#888;margin-bottom:25px;font-size:14px}
+  .couple-title{text-align:center;margin:20px 0 15px;color:#b08968;font-weight:bold}
+  .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+  .card{width:185px;text-align:center;background:#fff8ec;border:2px solid #f0e2c8;border-radius:16px;padding:18px 10px}
+  .avatar{width:80px;height:80px;border-radius:50%;background:#2d6a4f;color:white;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;margin:0 auto 10px}
+  .card.female .avatar{background:#b56576}
+  .card h3{font-size:17px;margin-bottom:4px}
+  .card p{font-size:13px;color:#777}
+  .card .tag{display:inline-block;margin-top:10px;background:#e9f5ec;color:#2d6a4f;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+  .card.female .tag{background:#fdeef0;color:#b56576}
+  footer{text-align:center;padding:20px;color:#888;font-size:14px}
 </style>
 </head>
 <body>
 
 <header>
   <h1>🌳 Árvore da Minha Família</h1>
-  <p>Nossa história, nossas raízes, nossas fotos</p>
+  <p>Família Ferreira Anselmo</p>
+  <p>Nossa história, nossas raízes, nossos frutos</p>
 </header>
 
-<div class="arvore">
-
-  <p><b>AVÓS</b></p>
-  <div class="nivel">
-    <div class="pessoa vo" onclick="abrir('Vô João','Avô','Meu avô, o começo de tudo.','https://picsum.photos/300/300?random=1')">
-      <img src="https://picsum.photos/300/300?random=1"><h3>Vô João</h3><p>Avô</p>
-    </div>
-    <div class="pessoa vo" onclick="abrir('Vó Maria','Avó','Minha avó, coração da família.','https://picsum.photos/300/300?random=2')">
-      <img src="https://picsum.photos/300/300?random=2"><h3>Vó Maria</h3><p>Avó</p>
-    </div>
-  </div>
-
-  <div class="seta">↓</div>
-  <p><b>PAIS</b></p>
-  <div class="nivel">
-    <div class="pessoa" onclick="abrir('Pai','Pai','Meu pai, meu exemplo.','https://picsum.photos/300/300?random=3')">
-      <img src="https://picsum.photos/300/300?random=3"><h3>Pai</h3><p>Pai</p>
-    </div>
-    <div class="pessoa" onclick="abrir('Mãe','Mãe','Minha mãe, minha base.','https://picsum.photos/300/300?random=4')">
-      <img src="https://picsum.photos/300/300?random=4"><h3>Mãe</h3><p>Mãe</p>
-    </div>
-  </div>
-
-  <div class="seta">↓</div>
-  <p><b>FILHOS / IRMÃOS</b></p>
-  <div class="nivel">
-    <div class="pessoa eu" onclick="abrir('Eu','Eu','Esse sou eu, contando nossa história.','https://picsum.photos/300/300?random=5')">
-      <img src="https://picsum.photos/300/300?random=5"><h3>Eu</h3><p>Eu</p>
-    </div>
-    <div class="pessoa" onclick="abrir('Meu Irmão','Irmão','Meu irmão, meu parceiro.','https://picsum.photos/300/300?random=6')">
-      <img src="https://picsum.photos/300/300?random=6"><h3>Meu Irmão</h3><p>Irmão</p>
-    </div>
-    <div class="pessoa" onclick="abrir('Minha Irmã','Irmã','Minha irmã querida.','https://picsum.photos/300/300?random=7')">
-      <img src="https://picsum.photos/300/300?random=7"><h3>Minha Irmã</h3><p>Irmã</p>
-    </div>
-  </div>
-
-</div>
-
-<div id="modal" onclick="fechar()">
-  <div class="card" onclick="event.stopPropagation()">
-    <img id="fotoPessoa" src="">
-    <h2 id="nomePessoa"></h2>
-    <p id="cargoPessoa" style="color:#2e5339;font-weight:bold"></p>
-    <p id="historiaPessoa" style="margin-top:10px"></p>
-    <button onclick="fechar()">Fechar</button>
+<!-- 1ª GERAÇÃO - AVÓS -->
+<div class="generation">
+  <h2>1ª Geração - Avós</h2>
+  <p class="subtitle">Nossas raízes</p>
+  <div class="cards">
+    <div class="card"><div class="avatar">O</div><h3>Vô Orni</h3><p>Avô</p><span class="tag">1ª Geração</span></div>
+    <div class="card female"><div class="avatar">D</div><h3>Vó Dorotti</h3><p>Avó</p><span class="tag">1ª Geração</span></div>
+    <div class="card female"><div class="avatar">I</div><h3>Vó Isabel</h3><p>Avó</p><span class="tag">1ª Geração</span></div>
+    <div class="card"><div class="avatar">M</div><h3>Vô Mario</h3><p>Avô</p><span class="tag">1ª Geração</span></div>
+    <div class="card"><div class="avatar">N</div><h3>Vô Nelson</h3><p>Avô</p><span class="tag">1ª Geração</span></div>
   </div>
 </div>
 
-<script>
-  function abrir(nome, cargo, historia, foto){
-    document.getElementById('nomePessoa').innerText = nome;
-    document.getElementById('cargoPessoa').innerText = cargo;
-    document.getElementById('historiaPessoa').innerText = historia;
-    document.getElementById('fotoPessoa').src = foto;
-    document.getElementById('modal').style.display = 'flex';
-  }
-  function fechar(){
-    document.getElementById('modal').style.display = 'none';
-  }
-</script>
+<!-- 2ª GERAÇÃO - FILHOS DOS AVÓS -->
+<div class="generation">
+  <h2>2ª Geração - Filhos dos Avós</h2>
+  <p class="subtitle">Pais, Tios e Tias</p>
+  <div class="cards">
+    <div class="card"><div class="avatar">D</div><h3>Pai Dejair</h3><p>Pai</p><span class="tag">2ª Geração</span></div>
+    <div class="card female"><div class="avatar">I</div><h3>Mãe Isabel</h3><p>Mãe</p><span class="tag">2ª Geração</span></div>
+    <div class="card"><div class="avatar">C</div><h3>Tio Cristiano</h3><p>Tio</p><span class="tag">2ª Geração</span></div>
+    <div class="card"><div class="avatar">J</div><h3>Tio Josemar</h3><p>Tio</p><span class="tag">2ª Geração</span></div>
+    <div class="card female"><div class="avatar">A</div><h3>Tia Andréia</h3><p>Tia</p><span class="tag">2ª Geração</span></div>
+    <div class="card"><div class="avatar">S</div><h3>Tio Semário</h3><p>Tio</p><span class="tag">2ª Geração</span></div>
+    <div class="card female"><div class="avatar">R</div><h3>Tia Rose</h3><p>Tia</p><span class="tag">2ª Geração</span></div>
+    <div class="card"><div class="avatar">J</div><h3>Tio Juarez</h3><p>Tio</p><span class="tag">2ª Geração</span></div>
+    <div class="card"><div class="avatar">J</div><h3>Tio José</h3><p>Tio</p><span class="tag">2ª Geração</span></div>
+    <div class="card female"><div class="avatar">L</div><h3>Tia Leci</h3><p>Tia</p><span class="tag">2ª Geração</span></div>
+    <div class="card"><div class="avatar">V</div><h3>Tio Valdecir</h3><p>Tio</p><span class="tag">2ª Geração</span></div>
+    <div class="card female"><div class="avatar">D</div><h3>Daniela Mileski</h3><p>Tia</p><span class="tag">2ª Geração</span></div>
+    <div class="card female"><div class="avatar">J</div><h3>Tia Jane</h3><p>Tia</p><span class="tag">2ª Geração</span></div>
+    <div class="card"><div class="avatar">M</div><h3>Marco Antônio</h3><p>Tio</p><span class="tag">2ª Geração</span></div>
+  </div>
+</div>
 
-</body>
-</htm
+<!-- 3ª GERAÇÃO - FILHOS -->
+<div class="generation">
+  <h2>3ª Geração - Filhos</h2>
+  <p class="subtitle">Filhos do Pai Dejair e da Mãe Isabel - Irmãos</p>
+  <div class="cards">
+    <div class="card"><div class="avatar">J</div><h3>Jonathan</h3><p>Filho / Irmão</p><span class="tag">3ª Geração</span></div>
+    <div class="card"><div class="avatar">N</div><h3>Natanael</h3><p>Filho / Irmão</p><span class="tag">3ª Geração</span></div
